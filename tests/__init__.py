@@ -1,0 +1,1 @@
+# Adzuna MCP Server Tests
