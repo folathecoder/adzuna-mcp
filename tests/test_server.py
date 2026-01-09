@@ -4,9 +4,10 @@ Tests for the Adzuna MCP Server.
 These tests use mocked HTTP responses to avoid hitting the real API.
 """
 
-import pytest
-from unittest.mock import AsyncMock, patch, MagicMock
 import os
+from unittest.mock import AsyncMock, MagicMock, patch
+
+import pytest
 
 # Set test environment variables before importing server
 os.environ["ADZUNA_APP_ID"] = "test_app_id"
@@ -14,10 +15,10 @@ os.environ["ADZUNA_APP_KEY"] = "test_app_key"
 
 # Import after setting env vars
 from server import (
+    BASE_URL,
+    SUPPORTED_COUNTRIES,
     get_auth_params,
     make_request,
-    SUPPORTED_COUNTRIES,
-    BASE_URL,
 )
 
 
@@ -38,7 +39,20 @@ class TestSupportedCountries:
 
     def test_all_countries_present(self):
         """All 12 supported countries should be configured."""
-        expected_countries = ["gb", "us", "de", "fr", "au", "nz", "ca", "in", "pl", "br", "at", "za"]
+        expected_countries = [
+            "gb",
+            "us",
+            "de",
+            "fr",
+            "au",
+            "nz",
+            "ca",
+            "in",
+            "pl",
+            "br",
+            "at",
+            "za",
+        ]
         for country in expected_countries:
             assert country in SUPPORTED_COUNTRIES
 

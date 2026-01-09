@@ -6,10 +6,10 @@ using the Adzuna API.
 """
 
 import os
+
 import httpx
 from dotenv import load_dotenv
 from fastmcp import FastMCP
-from typing import Optional
 
 load_dotenv()
 
@@ -88,9 +88,7 @@ async def make_request(endpoint: str, params: str = None) -> dict:
         auth_params.update(params)
 
     async with httpx.AsyncClient() as client:
-        response = await client.get(
-            f"{BASE_URL}/{endpoint}", params=auth_params, timeout=30.0
-        )
+        response = await client.get(f"{BASE_URL}/{endpoint}", params=auth_params, timeout=30.0)
 
         if response.status_code != 200:
             error_data = response.json()
@@ -104,19 +102,19 @@ async def make_request(endpoint: str, params: str = None) -> dict:
 @mcp.tool
 async def search_jobs(
     country: str,
-    keywords: Optional[str] = None,
-    location: Optional[str] = None,
+    keywords: str | None = None,
+    location: str | None = None,
     page: int = 1,
     results_per_page: int = 10,
-    salary_min: Optional[int] = None,
-    salary_max: Optional[int] = None,
-    full_time: Optional[bool] = None,
-    part_time: Optional[bool] = None,
-    contract: Optional[bool] = None,
-    permanent: Optional[bool] = None,
-    category: Optional[str] = None,
-    sort_by: Optional[str] = None,
-    max_days_old: Optional[int] = None,
+    salary_min: int | None = None,
+    salary_max: int | None = None,
+    full_time: bool | None = None,
+    part_time: bool | None = None,
+    contract: bool | None = None,
+    permanent: bool | None = None,
+    category: str | None = None,
+    sort_by: str | None = None,
+    max_days_old: int | None = None,
 ) -> dict:
     """
     Search for jobs on Adzuna across 12 supported countries.
@@ -287,9 +285,9 @@ async def get_categories(country: str) -> dict:
 @mcp.tool
 async def get_salary_histogram(
     country: str,
-    keywords: Optional[str] = None,
-    location: Optional[str] = None,
-    category: Optional[str] = None,
+    keywords: str | None = None,
+    location: str | None = None,
+    category: str | None = None,
 ) -> dict:
     """
     Get salary distribution histogram for jobs matching search criteria.
@@ -357,9 +355,9 @@ async def get_salary_histogram(
 @mcp.tool
 async def get_top_companies(
     country: str,
-    keywords: Optional[str] = None,
-    location: Optional[str] = None,
-    category: Optional[str] = None,
+    keywords: str | None = None,
+    location: str | None = None,
+    category: str | None = None,
 ) -> dict:
     """
     Get top employers currently hiring, ranked by number of open positions.
@@ -422,9 +420,9 @@ async def get_top_companies(
 @mcp.tool
 async def get_geodata(
     country: str,
-    keywords: Optional[str] = None,
-    location: Optional[str] = None,
-    category: Optional[str] = None,
+    keywords: str | None = None,
+    location: str | None = None,
+    category: str | None = None,
 ) -> dict:
     """
     Get salary and job count data broken down by geographic region.
@@ -495,10 +493,10 @@ async def get_geodata(
 @mcp.tool
 async def get_salary_history(
     country: str,
-    keywords: Optional[str] = None,
-    location: Optional[str] = None,
-    category: Optional[str] = None,
-    months: Optional[int] = None,
+    keywords: str | None = None,
+    location: str | None = None,
+    category: str | None = None,
+    months: int | None = None,
 ) -> dict:
     """
     Get historical salary trends over time for matching jobs.

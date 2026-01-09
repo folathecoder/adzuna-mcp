@@ -59,8 +59,10 @@ Issues = "https://github.com/folarinakinloye/adzuna-mcp/issues"
 adzuna-mcp = "server:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["."]
-include = ["server.py"]
+only-include = ["server.py"]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["server.py", "README.md", "LICENSE", "pyproject.toml"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
