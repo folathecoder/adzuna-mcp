@@ -1,5 +1,10 @@
 # Adzuna Jobs MCP Server
 
+[![CI](https://github.com/folarinakinloye/adzuna-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/folarinakinloye/adzuna-mcp/actions/workflows/ci.yml)
+[![PyPI version](https://badge.fury.io/py/adzuna-mcp.svg)](https://badge.fury.io/py/adzuna-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+
 A Model Context Protocol (MCP) server that provides AI assistants with access to the [Adzuna Job Search API](https://developer.adzuna.com/). Search for jobs, analyze salary data, and research employers across 12 countries.
 
 ## Features
@@ -52,33 +57,39 @@ A Model Context Protocol (MCP) server that provides AI assistants with access to
 
 ## Installation
 
-### 1. Clone the Repository
+### Option 1: Install from PyPI (Recommended)
 
 ```bash
-git clone https://github.com/yourusername/adzuna-mcp.git
-cd adzuna-mcp
+pip install adzuna-mcp
 ```
 
-### 2. Create Virtual Environment
+Or use `uvx` for isolated execution:
 
 ```bash
+uvx adzuna-mcp
+```
+
+### Option 2: Install from Source
+
+```bash
+git clone https://github.com/folarinakinloye/adzuna-mcp.git
+cd adzuna-mcp
+pip install -e .
+```
+
+### Option 3: Development Setup
+
+```bash
+git clone https://github.com/folarinakinloye/adzuna-mcp.git
+cd adzuna-mcp
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -e ".[dev]"
 ```
 
-### 3. Install Dependencies
+### Configure Environment Variables
 
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configure Environment Variables
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` and add your Adzuna credentials:
+Create a `.env` file with your Adzuna credentials:
 
 ```
 ADZUNA_APP_ID=your_app_id_here
@@ -264,10 +275,20 @@ Parameters:
 
 ```
 adzuna-mcp/
-├── server.py           # Main MCP server
-├── requirements.txt    # Python dependencies
-├── .env.example        # Environment template
-├── .env                # Your credentials (gitignored)
+├── server.py              # Main MCP server
+├── pyproject.toml         # Package configuration
+├── requirements.txt       # Python dependencies
+├── .env.example           # Environment template
+├── .env                   # Your credentials (gitignored)
+├── tests/                 # Test suite
+│   ├── __init__.py
+│   └── test_server.py
+├── .github/
+│   └── workflows/
+│       ├── ci.yml         # CI pipeline
+│       └── publish.yml    # PyPI publishing
+├── CONTRIBUTING.md        # Contribution guide
+├── LICENSE
 ├── .gitignore
 └── README.md
 ```
@@ -296,7 +317,7 @@ adzuna-mcp/
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
 

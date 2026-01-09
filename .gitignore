@@ -9,6 +9,18 @@ __pycache__/
 venv/
 .venv/
 env/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+.mypy_cache/
+.ruff_cache/
 
 # IDE
 .vscode/
@@ -16,3 +28,4 @@ env/
 
 # OS
 .DS_Store
+Thumbs.db
