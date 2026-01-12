@@ -24,3 +24,6 @@ startCommand:
         ADZUNA_APP_KEY: config.ADZUNA_APP_KEY
       }
     })
+
+build:
+  dockerfile: Dockerfile
