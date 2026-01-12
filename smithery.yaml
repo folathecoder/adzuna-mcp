@@ -1,0 +1,27 @@
+# Smithery configuration for Adzuna MCP Server
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      ADZUNA_APP_ID:
+        type: string
+        description: Your Adzuna API Application ID
+      ADZUNA_API_KEY:
+        type: string
+        description: Your Adzuna API Key
+    required:
+      - ADZUNA_APP_ID
+      - ADZUNA_API_KEY
+  commandFunction: |
+    (config) => ({
+      command: "python",
+      args: ["server.py"],
+      env: {
+        ADZUNA_APP_ID: config.ADZUNA_APP_ID,
+        ADZUNA_API_KEY: config.ADZUNA_API_KEY
+      }
+    })
+
+build:
+  dockerfile: Dockerfile
