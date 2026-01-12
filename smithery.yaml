@@ -1,4 +1,6 @@
 # Smithery configuration for Adzuna MCP Server
+# https://smithery.ai/docs/config
+
 startCommand:
   type: stdio
   configSchema:
@@ -6,20 +8,20 @@ startCommand:
     properties:
       ADZUNA_APP_ID:
         type: string
-        description: Your Adzuna API Application ID
-      ADZUNA_API_KEY:
+        description: Your Adzuna API App ID
+      ADZUNA_APP_KEY:
         type: string
-        description: Your Adzuna API Key
+        description: Your Adzuna API App Key
     required:
       - ADZUNA_APP_ID
-      - ADZUNA_API_KEY
-  commandFunction: |
+      - ADZUNA_APP_KEY
+  commandFunction: |-
     (config) => ({
-      command: "python",
-      args: ["server.py"],
+      command: 'python',
+      args: ['server.py'],
       env: {
         ADZUNA_APP_ID: config.ADZUNA_APP_ID,
-        ADZUNA_API_KEY: config.ADZUNA_API_KEY
+        ADZUNA_APP_KEY: config.ADZUNA_APP_KEY
       }
     })
 
